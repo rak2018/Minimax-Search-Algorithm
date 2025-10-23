@@ -101,57 +101,7 @@ def minimax(game)
         return scores[min_score_index]
     end
 end
-<h1>Minimax Algorithm with Alpha–Beta Pruning</h1>
-
-<hr>
-
-<h2>Program:</h2>
-
-```python
-import math
-
-def minimax(curDepth, nodeIndex, maxTurn, scores, targetDepth, alpha, beta):
-    """
-    Minimax algorithm with Alpha-Beta Pruning
-    """
-    # Base case: target depth reached
-    if curDepth == targetDepth:
-        return scores[nodeIndex]
-
-    if maxTurn:
-        # Maximizing player's turn
-        maxEval = -math.inf
-        for i in range(2):  # Two children for each node
-            eval = minimax(curDepth + 1, nodeIndex * 2 + i, False, scores, targetDepth, alpha, beta)
-            maxEval = max(maxEval, eval)
-            alpha = max(alpha, eval)  # Update alpha
-            if beta <= alpha:
-                break  # Beta pruning
-        return maxEval
-    else:
-        # Minimizing player's turn
-        minEval = math.inf
-        for i in range(2):  # Two children for each node
-            eval = minimax(curDepth + 1, nodeIndex * 2 + i, True, scores, targetDepth, alpha, beta)
-            minEval = min(minEval, eval)
-            beta = min(beta, eval)  # Update beta
-            if beta <= alpha:
-                break  # Alpha pruning
-        return minEval
-
-
-# Example scores (leaf nodes)
-scores = [3, 5, 6, 9, 1, 2, 0, -1]
-targetDepth = 3  # Depth of the tree
-
-# Start minimax from root with initial alpha and beta values
-best_value = minimax(0, 0, True, scores, targetDepth, -math.inf, math.inf)
-
-print("The optimal value is:", best_value)
-```
-
-<hr>
-<h3>Sample Input and Output</h3>
+<h3>sample Input and Output</h3>
 
 ![image](https://github.com/natsaravanan/19AI405FUNDAMENTALSOFARTIFICIALINTELLIGENCE/assets/87870499/6b668685-8bcc-43c5-b5c2-ddd43f3da84a)
 ![image](https://github.com/natsaravanan/19AI405FUNDAMENTALSOFARTIFICIALINTELLIGENCE/assets/87870499/8ca1b08a-8312-4ef5-89df-e69b7b2c3fa2)
